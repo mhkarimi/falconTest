@@ -4,5 +4,5 @@ import com.devglan.model.DummyJson;
 
 public interface CustomerInfoPublisher {
 	
-	void publish(DummyJson dummyJson);
+	void publish(String  dummyJson);
 }

@@ -5,6 +5,8 @@ import com.devglan.model.DummyJson;
 import com.devglan.producer.CustomerInfoPublisher;
 import com.devglan.repository.DummyJsonRepository;
 import com.devglan.config.SocketHandler;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,14 +28,15 @@ public class TestController {
     @Autowired
     private CustomerInfoPublisher redisPublisher;
 
-    @ApiOperation(value = "This method adds a new account to mysql database and its corresponding balance to redis" +
+    @ApiOperation(value = "This method adds a new dummyJSON to mysql database and redis" +
             "", response = Iterable.class)
     @Transactional
     @RequestMapping( method= RequestMethod.POST, consumes = "application/json")
     public @ResponseBody
     ResponseEntity addDummyJson(@RequestBody()DummyJson givenDummyJson){
         DummyJson dummyJson = dummyJsonRepository.save(givenDummyJson);
-        redisPublisher.publish(dummyJson);
+        Gson  gson = new GsonBuilder().setPrettyPrinting().create();
+        redisPublisher.publish(gson.toJson(dummyJson));
         return ResponseEntity.ok(dummyJson);
     }
 
@@ -43,12 +46,11 @@ public class TestController {
     public String findAll() {
         try {
            // socketHandler.afterConnectionEstablished("xXXXXXXXXXXXXXXX from rest");
-            redisPublisher.publish(new DummyJson("test1"));
-            redisPublisher.publish(new DummyJson("test2"));
-            redisPublisher.publish(new DummyJson("test3"));
+            Gson gson = new GsonBuilder().setPrettyPrinting().create();
+            redisPublisher.publish(gson.toJson(new DummyJson("test1")));
+            redisPublisher.publish(gson.toJson(new DummyJson("test2")));
+            redisPublisher.publish(gson.toJson(new DummyJson("test3")));
             Thread.sleep(50);
-            redisPublisher.publish(new DummyJson("test4"));
-            redisPublisher.publish(new DummyJson("test5"));
             DummyJson dummyJson = new DummyJson("testName");
             dummyJsonRepository.save(dummyJson);
 

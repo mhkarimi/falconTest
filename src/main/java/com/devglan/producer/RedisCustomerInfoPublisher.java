@@ -1,6 +1,7 @@
 package com.devglan.producer;
 
 import com.devglan.model.DummyJson;
+import com.google.gson.Gson;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.listener.ChannelTopic;
@@ -26,12 +27,13 @@ public class RedisCustomerInfoPublisher implements CustomerInfoPublisher {
 	}
 
 	@Override
-	public void publish(DummyJson dummyJson) {
+	public void publish(String givenDummyJson) {
 
+		DummyJson dummyJson = new Gson().fromJson(givenDummyJson,DummyJson.class);
 		System.out.println(
 				"Publishing... DummyJson with id=" + dummyJson.getId() + ", " + Thread.currentThread().getName());
 
-		redisTemplate.convertAndSend(topic.getTopic(), dummyJson.toString());
+		redisTemplate.convertAndSend(topic.getTopic(), givenDummyJson);
 	}
 
 }
