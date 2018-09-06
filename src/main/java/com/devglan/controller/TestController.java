@@ -14,6 +14,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 
 @RestController
 @RequestMapping("/api")
@@ -43,21 +45,17 @@ public class TestController {
 
 
     @GetMapping("/name")
-    public String findAll() {
+    public @ResponseBody ResponseEntity findAll() {
+        List<DummyJson> dummyJsons = null;
         try {
-           // socketHandler.afterConnectionEstablished("xXXXXXXXXXXXXXXX from rest");
             Gson gson = new GsonBuilder().setPrettyPrinting().create();
-            redisPublisher.publish(gson.toJson(new DummyJson("test1")));
-            redisPublisher.publish(gson.toJson(new DummyJson("test2")));
-            redisPublisher.publish(gson.toJson(new DummyJson("test3")));
-            Thread.sleep(50);
-            DummyJson dummyJson = new DummyJson("testName");
-            dummyJsonRepository.save(dummyJson);
+            dummyJsons  = dummyJsonRepository.findAll();
+            socketHandler.afterConnectionEstablished(gson.toJson(dummyJsons ));
 
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return "What the hellllllllllllllll";
+        return ResponseEntity.ok(dummyJsons);
     }
 
 }

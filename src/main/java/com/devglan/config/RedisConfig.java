@@ -15,7 +15,6 @@ import org.springframework.data.redis.serializer.StringRedisSerializer;
 
 import java.util.concurrent.Executors;
 
-//@SpringBootConfiguration
 @Configuration
 //@EnableTransactionManagement
 public class RedisConfig {

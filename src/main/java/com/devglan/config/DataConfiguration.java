@@ -68,4 +68,6 @@ public class DataConfiguration {
         return jpaTransactionManager;
     }
 
+
+
 }

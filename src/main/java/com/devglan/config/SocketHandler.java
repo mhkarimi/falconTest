@@ -1,6 +1,7 @@
 package com.devglan.config;
 
 import com.google.gson.Gson;
+import org.hibernate.dialect.SybaseAnywhereDialect;
 import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
 import org.springframework.web.socket.TextMessage;
@@ -26,19 +27,9 @@ public class SocketHandler extends TextWebSocketHandler {
 	public void handleTextMessage(WebSocketSession session, TextMessage message)
 			throws InterruptedException, IOException {
 		Map<String, String> value = new Gson().fromJson(message.getPayload(), Map.class);
-		//for(WebSocketSession webSocketSession : sessions) {
-		//	webSocketSession.sendMessage(new TextMessage("Hello " + value.get("name") + " !"));
-//			while (true) {
-//				webSocketSession.sendMessage(new TextMessage("Hello " + value.get("name") + " !"));
-//				Thread.sleep(2000);
-//			}
-
 		session.sendMessage(new TextMessage("Hello " + value.get("name") + " !"));
 		}
 
-			//session.sendMessage(new TextMessage("Hello " + value.get("name") + " !"));
-
-	
 	@Override
 	public void afterConnectionEstablished(WebSocketSession session) throws Exception {
 		this.session =session ;

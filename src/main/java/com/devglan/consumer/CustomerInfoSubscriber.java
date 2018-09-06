@@ -3,6 +3,7 @@ package com.devglan.consumer;
 import com.devglan.config.SocketHandler;
 import com.devglan.model.DummyJson;
 import com.devglan.repository.DummyJsonRepository;
+import com.google.gson.GsonBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.connection.Message;
 import org.springframework.data.redis.connection.MessageListener;
@@ -19,10 +20,8 @@ public class CustomerInfoSubscriber implements MessageListener {
 
 	@Override
 	public void onMessage(Message message, byte[] pattern) {
-		//System.out.println("Received >> " + message +  ", " + Thread.currentThread().getName() );
 		try {
-			//socketHandler.afterConnectionEstablished(message.toString());
-			dummyJsonRepository.save()
+			dummyJsonRepository.save(new GsonBuilder().create().fromJson(message.toString(),DummyJson.class));
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
