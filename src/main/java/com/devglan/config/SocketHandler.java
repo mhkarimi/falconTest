@@ -39,7 +39,7 @@ public class SocketHandler extends TextWebSocketHandler {
 
 	public void afterConnectionEstablished(String text) throws Exception {
 		this.shit = text;
-		// without line below  i would get exception :
+		// without line below  it would possibly raise exception below :
 		// java.lang.IllegalStateException: The remote endpoint was in state [TEXT_PARTIAL_WRITING] which is an invalid state for called method
 		synchronized(session) {
 			session.sendMessage(new TextMessage(text));
