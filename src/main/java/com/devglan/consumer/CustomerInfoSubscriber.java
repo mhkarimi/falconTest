@@ -21,6 +21,7 @@ public class CustomerInfoSubscriber implements MessageListener {
 	@Override
 	public void onMessage(Message message, byte[] pattern) {
 		try {
+			System.out.println("\n\n\n\n\n  message received from the publisher  \n" + message+"\n\n\n\n\n");
 			dummyJsonRepository.save(new GsonBuilder().create().fromJson(message.toString(),DummyJson.class));
 		} catch (Exception e) {
 			e.printStackTrace();

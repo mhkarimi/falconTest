@@ -9,12 +9,12 @@ spring.datasource:
 #spring.jpa:
 #spring.h2.console.enabled: true
 
-logging:
-  level:
-    root: ERROR
-    org.springframework.web: ERROR
-    com.howtodoinjava: DEBUG
-    org.hibernate: TRACE
+#logging:
+#  level:
+#    root: ERROR
+#    org.springframework.web: ERROR
+#    com.howtodoinjava: DEBUG
+#    org.hibernate: TRACE
 
 #
 #logging:
