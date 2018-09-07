@@ -53,7 +53,7 @@ public class DataConfiguration {
         Properties properties = new Properties();
        // properties.put("hibernate.hbm2ddl.auto",springJpaHibernateDdlAuto);
        // properties.put("hibernate.dialect","org.hibernate.dialect.MySQLInnoDBDialect");
-        //properties.put("hibernate.dialect","org.hibernate.dialect.MySQL5Dialect");
+        properties.put("hibernate.dialect","org.hibernate.dialect.MySQL5Dialect");
 
         factoryBean.setJpaProperties(properties);
         factoryBean.afterPropertiesSet();
