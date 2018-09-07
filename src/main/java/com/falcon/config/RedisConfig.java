@@ -23,7 +23,7 @@ public class RedisConfig {
     JedisConnectionFactory jedisConnectionFactory() {
         JedisConnectionFactory jedisConnectionFactory = new JedisConnectionFactory();
         //jedisConnectionFactory.setHostName("172.17.0.4");
-        //jedisConnectionFactory.setHostName("myredis");
+        jedisConnectionFactory.setHostName("myredis");
         return jedisConnectionFactory ;
     }
 

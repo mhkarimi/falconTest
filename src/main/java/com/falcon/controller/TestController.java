@@ -33,7 +33,7 @@ public class TestController {
 //    @ApiOperation(value = "This method adds a new dummyJSON to mysql database and redis, you can check the output" +
 //            "", response = Iterable.class)
     @Transactional
-    @RequestMapping( method= RequestMethod.POST, consumes = "application/json")
+    @RequestMapping(value = "/name",method= RequestMethod.POST, consumes = "application/json")
     public @ResponseBody
     ResponseEntity addDummyJson(@RequestBody()DummyJson givenDummyJson){
         DummyJson dummyJson = dummyJsonRepository.save(givenDummyJson);
@@ -44,7 +44,7 @@ public class TestController {
 
 //    @ApiOperation(value = "This method will return all of the persisted object in database and also pushes the result to listening websocket" +
 //            "", response = Iterable.class)
-    @GetMapping("/name")
+    @RequestMapping(value = "/name",method= RequestMethod.GET, produces= "application/json")
     public @ResponseBody ResponseEntity findAll() {
         List<DummyJson> dummyJsons = null;
         try {
