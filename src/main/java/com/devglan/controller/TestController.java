@@ -50,7 +50,7 @@ public class TestController {
         try {
             Gson gson = new GsonBuilder().setPrettyPrinting().create();
             dummyJsons  = dummyJsonRepository.findAll();
-            socketHandler.afterConnectionEstablished(gson.toJson(dummyJsons ));
+            socketHandler.sendJsonObjectToWebSocketInGETMethod(gson.toJson(dummyJsons ));
 
         } catch (Exception e) {
             e.printStackTrace();
