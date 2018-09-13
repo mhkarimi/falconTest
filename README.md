@@ -1,4 +1,4 @@
-Hi! This is the README file as it was supposed to be written the task description. I used **Spring boot**, **Spring Data JPA , Spring Data Redis, Redis Pub-Sub IntelliJ IDEA, Redis, MySQL, maven, swagger, webSocket, docker** and **docker-compose**.
+Hi! This is the README file as it was supposed to be written for the task description. I used **Spring boot**, **Spring Data JPA , Spring Data Redis, Redis Pub-Sub IntelliJ IDEA, Redis, MySQL, maven, swagger, webSocket, docker** and **docker-compose**.
   
 ## What was my strategies to solve the problem?
   
